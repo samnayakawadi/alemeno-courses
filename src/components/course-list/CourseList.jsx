@@ -56,17 +56,20 @@ const CourseList = () => {
     ];
 
     return (
-        <div className="flex gap-5 m-5">
-            <div className="basis-4/12 flex justify-center gap-3">
-                <input type="text" placeholder="Search Course" className="input input-bordered" />
-                <button className="btn btn-success">Search</button>
-            </div>
-            <div className="grid grid-cols-3 gap-5">
-                {
-                    courses.map((singleCourse, courseIndex) => {
-                        return <SingleCourseCard courseData={singleCourse} key={courseIndex} />
-                    })
-                }
+        <div className="m-5">
+            <div className="p-10 border text-center text-lg font-semibold">Here are all the available courses</div>
+            <div className="flex gap-5 mt-5">
+                <div className="basis-4/12 flex justify-center gap-3">
+                    <input type="text" placeholder="Search Course" className="input input-bordered" />
+                    <button className="btn btn-success">Search</button>
+                </div>
+                <div className="grid grid-cols-3 gap-5">
+                    {
+                        courses.map((singleCourse, courseIndex) => {
+                            return <SingleCourseCard courseData={singleCourse} key={courseIndex} />
+                        })
+                    }
+                </div>
             </div>
         </div>
     )
