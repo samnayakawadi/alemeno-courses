@@ -10,7 +10,8 @@ const SingleCourseCard = ({ courseData }) => {
                 <p>{courseData.courseDescription}</p>
                 <p className="">by {courseData.courseInstructor}</p>
                 <div className="card-actions justify-end pt-3">
-                    <Link to="/course-details" className="btn btn-primary btn-block">View Course Details</Link>
+                    {/* <Link to="/course-details" className="btn btn-primary btn-block"></Link> */}
+                    <Link to="/course-details" className="btn btn-outline btn-primary btn-block">View Course Details</Link>
                 </div>
             </div>
         </div>

@@ -7,7 +7,7 @@ const CourseList = () => {
             courseName: "React Native",
             courseDescription: "Build cross-platform mobile applications using React Native framework.",
             courseInstructor: "Samir Nayakawadi"
-          },
+        },
         {
             courseName: "Machine Learning",
             courseDescription: "Explore the world of machine learning with hands-on projects.",
@@ -56,12 +56,12 @@ const CourseList = () => {
     ];
 
     return (
-        <div>
-            <div className="flex justify-center gap-3 mt-3">
-                <input type="text" placeholder="Search Course" className="input input-bordered w-full max-w-xs" />
+        <div className="flex gap-5 m-5">
+            <div className="basis-4/12 flex justify-center gap-3">
+                <input type="text" placeholder="Search Course" className="input input-bordered" />
                 <button className="btn btn-success">Search</button>
             </div>
-            <div className="grid grid-cols-4 gap-3 p-5 mt-5">
+            <div className="grid grid-cols-3 gap-5">
                 {
                     courses.map((singleCourse, courseIndex) => {
                         return <SingleCourseCard courseData={singleCourse} key={courseIndex} />
