@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom"
+
 /* eslint-disable react/prop-types */
 const SingleCourseCard = ({ courseData }) => {
     return (
@@ -8,7 +10,7 @@ const SingleCourseCard = ({ courseData }) => {
                 <p>{courseData.courseDescription}</p>
                 <p className="">by {courseData.courseInstructor}</p>
                 <div className="card-actions justify-end pt-3">
-                    <button className="btn btn-primary btn-block">View Course Details</button>
+                    <Link to="/course-details" className="btn btn-primary btn-block">View Course Details</Link>
                 </div>
             </div>
         </div>
