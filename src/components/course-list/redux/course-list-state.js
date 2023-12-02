@@ -1,6 +1,6 @@
 export const courseListState = {
-    courses: [{}],
-    displayedCourses: [{}],
+    courses: null,
+    displayedCourses: null,
     isLoading: false,
     searchText: ""
 }

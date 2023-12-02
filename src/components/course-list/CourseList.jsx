@@ -14,6 +14,10 @@ const CourseList = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
+    const isNull = courses.displayedCourses === null
+    const isEmpty = courses.displayedCourses?.length === 0
+    const isLoading = courses.isLoading
+
     return (
         <div className="m-5">
             <div className="p-10 border text-center text-lg font-semibold">Here are all the available courses</div>
@@ -22,7 +26,7 @@ const CourseList = () => {
                     <input value={courses.searchText} onChange={searchTextUpdateHandler} type="text" placeholder="Search Course" className="input input-bordered w-full" />
                     <button className="btn btn-success">Search</button>
                 </form>
-                {!courses.isLoading && courses.displayedCourses.length !== 0 && <div className="basis-9/12 grid grid-cols-3 gap-5">
+                {!isLoading && !isNull && !isEmpty && <div className="basis-9/12 grid grid-cols-3 gap-5">
                     {
                         courses.displayedCourses.map((singleCourse, courseIndex) => {
                             return <SingleCourseCard courseData={singleCourse} key={courseIndex} />
@@ -30,14 +34,14 @@ const CourseList = () => {
                     }
                 </div>}
                 {
-                    courses.isLoading && courses.displayedCourses.length !== 0 && <div className="basis-9/12 grid grid-cols-3 gap-5">
+                    isLoading && !isEmpty && <div className="basis-9/12 grid grid-cols-3 gap-5">
                         <div className="skeleton h-96"></div>
                         <div className="skeleton h-96"></div>
                         <div className="skeleton h-96"></div>
                     </div>
                 }
                 {
-                    !courses.isLoading && courses.displayedCourses.length === 0 && <div className="basis-9/12 p-10 border text-center text-lg font-semibold">No Courses Found</div>
+                    !isLoading && isEmpty && <div className="basis-9/12 p-10 border text-center text-lg font-semibold">No Courses Found</div>
                 }
             </div>
         </div>
