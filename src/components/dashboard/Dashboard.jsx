@@ -7,8 +7,6 @@ const Dashboard = () => {
 
     const enrolledCourses = dashboardState.users[dashboardState.currentUser].enrolledCourses
 
-    console.log("enrolledCourses", enrolledCourses)
-
     const isEmpty = enrolledCourses.length === 0
 
     return (

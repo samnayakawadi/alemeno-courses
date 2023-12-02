@@ -6,7 +6,6 @@ const DashSingleCourseCard = ({ courseData }) => {
 
     const { markCourseAsCompleteHandler } = DashboardHandlers()
 
-    console.log("courseData", courseData)
     return (
         <div className="card bg-base-100 shadow-xl">
             <figure><img src={courseData.thumbnail} alt="Thumbnail" /></figure>

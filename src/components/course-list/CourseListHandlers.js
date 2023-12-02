@@ -186,7 +186,6 @@ const CourseListHandlers = () => {
                 || singleCourse.instructor.toLowerCase().includes(courses.searchText.toLowerCase())
                 || singleCourse.description.toLowerCase().includes(courses.searchText.toLowerCase()))
         })
-        console.log(updatedCourses)
         dispatch(courseListActions.updateDisplayedCourses(updatedCourses))
     }
 

@@ -10,7 +10,6 @@ export const dashboardReducers = {
         })
 
         if (shouldUserBeAdded) {
-            console.log("User SHould be Added : true")
             return { ...prevState, users: { ...prevState, [actions.payload]: { enrolledCourses: [], currentUser: actions.payload } } }
         }
 
@@ -35,7 +34,6 @@ export const dashboardReducers = {
     },
 
     markCourseAsComplete: (prevState, actions) => {
-        console.log("actions.payload", actions.payload)
         let courseIndex = null
         prevState.users[prevState.currentUser].enrolledCourses.every((singleCourse, singleIndex) => {
             if (singleCourse.id == actions.payload) {

@@ -18,7 +18,6 @@ export const courseListReducers = {
         // Checks if user already enrolled or not
         prevState.courses.every((singleCourse, courseIndex) => {
             if (singleCourse.id == actions.payload.courseId) {
-                console.log("Matched")
                 selectedCourseIndex = courseIndex
                 singleCourse.students.every((singleStudent) => {
                     if (singleStudent.email === actions.payload.email) {
