@@ -14,7 +14,7 @@ const DashSingleCourseCard = ({ courseData }) => {
                 <h2 className="card-title">{courseData.name}</h2>
                 {/* <p>{courseData.courseDescription}</p> */}
                 <p className="">Author :  {courseData.instructor}</p>
-                <p className="">Due By :  03/12/2023</p>
+                <p className="">Due By :  {courseData.duration} from enrollment</p>
                 <progress className="progress progress-secondary" value={courseData.isComplete ? "100" : "5"} max="100"></progress>
                 <div className="card-actions justify-end pt-3">
                     {/* <Link to="/course-details" className="btn btn-primary btn-block"></Link> */}
