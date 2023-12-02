@@ -19,9 +19,10 @@ const CourseDetails = () => {
     useEffect(() => {
         fetchCourseDetailsHandler(id)
         setIsUserEnrolled(checkIfUserIsEnrolledOrNotHandler(id))
-
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
+
+    const isEnrollmentClosed = course.enrollmentStatus === "Closed"
 
     return (
         <div>
@@ -30,7 +31,7 @@ const CourseDetails = () => {
                     <h1 className="text-xl font-semibold">{course.name}</h1>
                     <h3>by {course.instructor}</h3>
                     <p>{course.description}</p>
-                    <button className="btn btn-outline btn-primary w-52" onClick={() => { enrollUserToCourseHandler(id, "samnayakawadi@gmail.com"); setIsUserEnrolled(true) }} disabled={isUserEnrolled === true || isUserEnrolled === null}>{isUserEnrolled && "Already Enrolled"}{isUserEnrolled === false && "Enroll Now"}{isUserEnrolled === null && "Loading"}</button>
+                    <button className="btn btn-outline btn-primary w-52" onClick={() => { if (course.enrollmentStatus === "Open") { enrollUserToCourseHandler(id, "samnayakawadi@gmail.com"); setIsUserEnrolled(true) } }} disabled={(isUserEnrolled === true || isUserEnrolled === null || isEnrollmentClosed)}>{isEnrollmentClosed && "Enollment is Closed"}{!isEnrollmentClosed && isUserEnrolled && "Already Enrolled"}{!isEnrollmentClosed && isUserEnrolled === false && "Enroll Now"}{!isEnrollmentClosed && isUserEnrolled === null && "Loading"}</button>
                 </div>
                 <div className="basis-6/12">
                     <img src="https://daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" />

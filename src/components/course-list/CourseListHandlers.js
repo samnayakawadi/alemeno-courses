@@ -12,7 +12,7 @@ const CourseListHandlers = () => {
             instructor: "John Doe",
             description: "Learn the basics of React Native development and build your first mobile app",
             likes: 1,
-            enrollmentStatus: 'Open',
+            enrollmentStatus: 'Closed',
             thumbnail: 'your.image.here',
             duration: '8 weeks',
             schedule: 'Tuesdays and Thursdays, 6:00 PM - 8:00 PM',
