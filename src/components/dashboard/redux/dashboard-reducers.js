@@ -45,12 +45,17 @@ export const dashboardReducers = {
             return true
         })
 
-        console.log("courseIndex", courseIndex)
-
-        console.log("prevState.users[prevState.currentUser].enrolledCourses[courseIndex]", prevState.users[prevState.currentUser].enrolledCourses[courseIndex])
-
         prevState.users[prevState.currentUser].enrolledCourses[courseIndex].isComplete = true
 
         return prevState
+    },
+
+    selectUser: (prevState, actions) => {
+
+        if (prevState.users[actions.payload] !== undefined) {
+            return { ...prevState, currentUser: actions.payload }
+        }
+        return prevState
+
     }
 }

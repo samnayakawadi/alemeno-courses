@@ -10,6 +10,8 @@ const CourseDetails = () => {
 
     const { id } = useParams()
 
+    const dashboardState = useSelector(prevState => prevState.dashboard)
+
     const { fetchCourseDetailsHandler, enrollUserToCourseHandler, checkIfUserIsEnrolledOrNotHandler } = CourseDetailsHandlers()
 
     const course = useSelector(prevState => prevState.courseDetails)
@@ -20,7 +22,7 @@ const CourseDetails = () => {
         fetchCourseDetailsHandler(id)
         setIsUserEnrolled(checkIfUserIsEnrolledOrNotHandler(id))
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
+    }, [dashboardState])
 
     const isEnrollmentClosed = course.enrollmentStatus === "Closed"
 

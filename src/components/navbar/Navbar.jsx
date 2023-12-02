@@ -1,6 +1,15 @@
+import { useSelector } from "react-redux"
 import { Link } from "react-router-dom"
+import NavbarHandlers from "./NavbarHandlers"
 
 const Navbar = () => {
+
+    const { changeUserHandler } = NavbarHandlers()
+
+    const dashboardState = useSelector(prevState => prevState.dashboard)
+
+    const users = Object.keys(dashboardState.users)
+
     return (
         <div className="navbar bg-base-100 border-b p-5 mb-5 sticky z-20 top-0">
             <div className="navbar-start">
@@ -23,9 +32,16 @@ const Navbar = () => {
                 <Link to="/" className="btn btn-ghost text-xl">Alemeno | Learnings</Link>
             </div>
             <div className="navbar-center hidden lg:flex">
-                {/* <ul className="menu menu-horizontal px-1">
-                    <li><a>Item 1</a></li>
-                    <li>
+                <ul className="menu menu-horizontal px-1">
+                    <select className="select select-success w-full max-w-xs" onChange={changeUserHandler}>
+                        {users.map((singleUser, singleIndex) => {
+                            return (<option key={singleIndex} value={singleUser}>{singleUser}</option>)
+                        })}
+                    </select>
+                    {/* <li>
+                        
+                    </li> */}
+                    {/* <li>
                         <details>
                             <summary>Parent</summary>
                             <ul className="p-2">
@@ -34,8 +50,8 @@ const Navbar = () => {
                             </ul>
                         </details>
                     </li>
-                    <li><a>Item 3</a></li>
-                </ul> */}
+                    <li><a>Item 3</a></li> */}
+                </ul>
             </div>
             <div className="navbar-end gap-3">
                 <Link to="/" className="btn">Home</Link>
