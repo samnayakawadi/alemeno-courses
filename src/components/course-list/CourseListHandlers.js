@@ -191,7 +191,7 @@ const CourseListHandlers = () => {
                 dispatch(courseListActions.updateAlert({ status: true, message: error.message, type: "error" }))
             }
 
-        }, 1500)
+        }, 500)
     }
 
     const searchFromCoursesHandler = (e) => {

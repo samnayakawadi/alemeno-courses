@@ -22,27 +22,33 @@ const CourseList = () => {
     return (
         <div className="m-5">
             <div className="p-10 border text-center text-lg font-semibold">Here are all the available courses</div>
-            <div className="flex gap-5 mt-5">
-                <form onSubmit={searchFromCoursesHandler} className="basis-3/12 flex justify-center gap-3">
-                    <input value={courses.searchText} onChange={searchTextUpdateHandler} type="text" placeholder="Search Course" className="input input-bordered w-full" />
-                    <button className="btn btn-success">Search</button>
+            <div className="flex gap-5 mt-5 max-lg:flex-wrap">
+                <form onSubmit={searchFromCoursesHandler} className="basis-3/12 max-lg:basis-full">
+                    <div className="flex justify-center gap-3">
+                        <input value={courses.searchText} onChange={searchTextUpdateHandler} type="text" placeholder="Search Course" className="input input-bordered w-full" />
+                        <button className="btn btn-success">Search</button>
+                    </div>
                 </form>
-                {!isLoading && !isNull && !isEmpty && !isAlert && <div className="basis-9/12 grid grid-cols-3 gap-5">
-                    {
-                        courses.displayedCourses.map((singleCourse, courseIndex) => {
-                            return <SingleCourseCard courseData={singleCourse} key={courseIndex} />
-                        })
-                    }
+                {!isLoading && !isNull && !isEmpty && !isAlert && <div className="basis-9/12 max-lg:basis-full">
+                    <div className="grid grid-cols-3 max-lg:grid-cols-1 gap-5">
+                        {
+                            courses.displayedCourses.map((singleCourse, courseIndex) => {
+                                return <SingleCourseCard courseData={singleCourse} key={courseIndex} />
+                            })
+                        }
+                    </div>
                 </div>}
                 {
-                    isLoading && !isEmpty && <div className="basis-9/12 grid grid-cols-3 gap-5">
-                        <div className="skeleton h-96"></div>
-                        <div className="skeleton h-96"></div>
-                        <div className="skeleton h-96"></div>
+                    isLoading && !isEmpty && <div className="basis-9/12 max-lg:basis-full">
+                        <div className="grid grid-cols-3 max-lg:grid-cols-1 gap-5">
+                            <div className="skeleton h-96"></div>
+                            <div className="skeleton h-96"></div>
+                            <div className="skeleton h-96"></div>
+                        </div>
                     </div>
                 }
-                {!isLoading && isEmpty && <div className="basis-9/12 p-10 border text-center text-lg font-semibold">No Courses Found</div>}
-                {!isLoading && isAlert && <div className="basis-9/12 p-10 border text-center text-lg font-semibold">{courses.alert.message}</div>}
+                {!isLoading && isEmpty && <div className="basis-9/12 max-lg:basis-full p-10 border text-center text-lg font-semibold">No Courses Found</div>}
+                {!isLoading && isAlert && <div className="basis-9/12 max-lg:basis-full p-10 border text-center text-lg font-semibold">{courses.alert.message}</div>}
             </div>
         </div>
     )

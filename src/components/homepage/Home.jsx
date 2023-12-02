@@ -2,7 +2,7 @@ const Home = () => {
     return (
         <div className="m-5">
             <div className="p-10 border text-center text-lg font-semibold">Features of Application</div>
-            <div className="grid grid-cols-3 gap-5 mt-5">
+            <div className="grid grid-cols-3 max-lg:grid-cols-1 gap-5 mt-5">
                 <div className="p-10 border text-center flex flex-col gap-5">
                     <h1 className="text-lg font-semibold">Course List</h1>
                     <p>Learner can directly see the courses available for him/her to enroll. There is a View Course Details button that opens a new page with course details</p>

@@ -12,12 +12,12 @@ const Dashboard = () => {
     return (
         <div className="m-5">
             <div className="p-10 border text-center text-lg font-semibold">Here are all the enrolled courses</div>
-            <div className="flex gap-5 mt-5">
+            <div className="flex max-lg:flex-wrap gap-5 mt-5">
                 {/* <form onSubmit={searchFromCoursesHandler} className="basis-3/12 flex justify-center gap-3">
                     <input value={courses.searchText} onChange={searchTextUpdateHandler} type="text" placeholder="Search Course" className="input input-bordered w-full" />
                     <button className="btn btn-success">Search</button>
                 </form> */}
-                {!isEmpty && <div className="basis-full grid grid-cols-4 gap-5">
+                {!isEmpty && <div className="basis-full grid grid-cols-4 max-lg:grid-cols-1 gap-5">
                     {
                         enrolledCourses.map((singleCourse, courseIndex) => {
                             return <DashSingleCourseCard courseData={singleCourse} key={courseIndex} />
