@@ -39,5 +39,9 @@ export const courseListReducers = {
         return prevState
 
         // I have done as per the assignment JSON (Stundets are getting added after in students array). But is it not practical because, After adding the user to main courses list array, It will get reset when user navigates to courses list page (Hence, I will create a store to manage the enrollements to resolve this)
+    },
+
+    updateAlert: (prevState, actions) => {
+        return { ...prevState, alert: actions.payload }
     }
 }

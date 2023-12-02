@@ -17,6 +17,7 @@ const CourseList = () => {
     const isNull = courses.displayedCourses === null
     const isEmpty = courses.displayedCourses?.length === 0
     const isLoading = courses.isLoading
+    const isAlert = courses.alert.status
 
     return (
         <div className="m-5">
@@ -26,7 +27,7 @@ const CourseList = () => {
                     <input value={courses.searchText} onChange={searchTextUpdateHandler} type="text" placeholder="Search Course" className="input input-bordered w-full" />
                     <button className="btn btn-success">Search</button>
                 </form>
-                {!isLoading && !isNull && !isEmpty && <div className="basis-9/12 grid grid-cols-3 gap-5">
+                {!isLoading && !isNull && !isEmpty && !isAlert && <div className="basis-9/12 grid grid-cols-3 gap-5">
                     {
                         courses.displayedCourses.map((singleCourse, courseIndex) => {
                             return <SingleCourseCard courseData={singleCourse} key={courseIndex} />
@@ -40,9 +41,8 @@ const CourseList = () => {
                         <div className="skeleton h-96"></div>
                     </div>
                 }
-                {
-                    !isLoading && isEmpty && <div className="basis-9/12 p-10 border text-center text-lg font-semibold">No Courses Found</div>
-                }
+                {!isLoading && isEmpty && <div className="basis-9/12 p-10 border text-center text-lg font-semibold">No Courses Found</div>}
+                {!isLoading && isAlert && <div className="basis-9/12 p-10 border text-center text-lg font-semibold">{courses.alert.message}</div>}
             </div>
         </div>
     )

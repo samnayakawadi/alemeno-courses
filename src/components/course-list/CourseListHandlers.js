@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from "react-redux"
 import { courseListActions } from "./redux/course-list-slice"
+import axios from "axios"
 
 const CourseListHandlers = () => {
 
@@ -173,9 +174,23 @@ const CourseListHandlers = () => {
     const fetchCoursesHandler = () => {
         dispatch(courseListActions.updateSearchText(""))
         dispatch(courseListActions.toggleIsLoading(true))
-        setTimeout(() => {
-            dispatch(courseListActions.updateCourses(data))
-            dispatch(courseListActions.toggleIsLoading(false))
+        setTimeout(async () => {
+
+            try {
+                const response = await axios.get("https://dpqkqd-3000.csb.app/courses", {
+                    withCredentials: true
+                })
+
+                if (response.data) {
+                    dispatch(courseListActions.updateCourses(data))
+                    dispatch(courseListActions.toggleIsLoading(false))
+                }
+            } catch (error) {
+                // some error message
+                dispatch(courseListActions.toggleIsLoading(false))
+                dispatch(courseListActions.updateAlert({ status: true, message: error.message, type: "error" }))
+            }
+
         }, 1500)
     }
 

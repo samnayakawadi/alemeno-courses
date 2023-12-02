@@ -2,5 +2,10 @@ export const courseListState = {
     courses: null,
     displayedCourses: null,
     isLoading: false,
-    searchText: ""
+    searchText: "",
+    alert: {
+        type: "error",
+        message: "",
+        status: false
+    }
 }
