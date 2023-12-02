@@ -28,8 +28,28 @@ export const dashboardReducers = {
         })
 
         if (shouldEnrollThisCourse) {
-            prevState.users[prevState.currentUser].enrolledCourses.push(actions.payload)
+            prevState.users[prevState.currentUser].enrolledCourses.push({ ...actions.payload, isComplete: false })
         }
+
+        return prevState
+    },
+
+    markCourseAsComplete: (prevState, actions) => {
+        console.log("actions.payload", actions.payload)
+        let courseIndex = null
+        prevState.users[prevState.currentUser].enrolledCourses.every((singleCourse, singleIndex) => {
+            if (singleCourse.id == actions.payload) {
+                courseIndex = singleIndex
+                return false
+            }
+            return true
+        })
+
+        console.log("courseIndex", courseIndex)
+
+        console.log("prevState.users[prevState.currentUser].enrolledCourses[courseIndex]", prevState.users[prevState.currentUser].enrolledCourses[courseIndex])
+
+        prevState.users[prevState.currentUser].enrolledCourses[courseIndex].isComplete = true
 
         return prevState
     }

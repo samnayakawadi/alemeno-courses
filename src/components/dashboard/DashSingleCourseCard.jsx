@@ -1,7 +1,11 @@
 /* eslint-disable react/prop-types */
 import { Link } from "react-router-dom"
+import DashboardHandlers from "./DashboardHandlers"
 
 const DashSingleCourseCard = ({ courseData }) => {
+
+    const { markCourseAsCompleteHandler } = DashboardHandlers()
+
     console.log("courseData", courseData)
     return (
         <div className="card bg-base-100 shadow-xl">
@@ -11,11 +15,11 @@ const DashSingleCourseCard = ({ courseData }) => {
                 {/* <p>{courseData.courseDescription}</p> */}
                 <p className="">Author :  {courseData.instructor}</p>
                 <p className="">Due By :  03/12/2023</p>
-                <progress className="progress progress-secondary" value="70" max="100"></progress>
+                <progress className="progress progress-secondary" value={courseData.isComplete ? "100" : "5"} max="100"></progress>
                 <div className="card-actions justify-end pt-3">
                     {/* <Link to="/course-details" className="btn btn-primary btn-block"></Link> */}
                     <Link to={`/course-details/${courseData.id}`} className="btn btn-outline btn-primary btn-block">View Course Details</Link>
-                    <button className="btn btn-outline btn-primary btn-block">Mark as Complete</button>
+                    <button className="btn btn-outline btn-primary btn-block" onClick={() => { markCourseAsCompleteHandler(courseData.id) }} disabled={courseData.isComplete}>{courseData.isComplete ? "Already Marked Complete" : "Mark as Complete"}</button>
                 </div>
             </div>
         </div>
