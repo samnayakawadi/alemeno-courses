@@ -1,4 +1,6 @@
 export const courseListState = {
-    courses: [],
+    courses: [{}],
+    displayedCourses: [{}],
     isLoading: false,
+    searchText: ""
 }

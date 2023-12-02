@@ -7,7 +7,7 @@ const CourseList = () => {
 
     const courses = useSelector(prevState => prevState.courses)
 
-    const { fetchCoursesHandler } = CourseListHandlers()
+    const { fetchCoursesHandler, searchTextUpdateHandler, searchFromCoursesHandler } = CourseListHandlers()
 
     useEffect(() => {
         fetchCoursesHandler()
@@ -18,19 +18,22 @@ const CourseList = () => {
         <div className="m-5">
             <div className="p-10 border text-center text-lg font-semibold">Here are all the available courses</div>
             <div className="flex gap-5 mt-5">
-                <div className="basis-3/12 flex justify-center gap-3">
-                    <input type="text" placeholder="Search Course" className="input input-bordered w-full" />
+                <form onSubmit={searchFromCoursesHandler} className="basis-3/12 flex justify-center gap-3">
+                    <input value={courses.searchText} onChange={searchTextUpdateHandler} type="text" placeholder="Search Course" className="input input-bordered w-full" />
                     <button className="btn btn-success">Search</button>
-                </div>
-                {!courses.isLoading && <div className="basis-9/12 grid grid-cols-3 gap-5">
+                </form>
+                {!courses.isLoading && courses.displayedCourses.length !== 0 && <div className="basis-9/12 grid grid-cols-3 gap-5">
                     {
-                        courses.courses.map((singleCourse, courseIndex) => {
+                        courses.displayedCourses.map((singleCourse, courseIndex) => {
                             return <SingleCourseCard courseData={singleCourse} key={courseIndex} />
                         })
                     }
                 </div>}
                 {
-                    courses.isLoading && <div className="basis-9/12 p-10 border text-center text-lg font-semibold">Loading...</div>
+                    courses.isLoading && courses.displayedCourses.length !== 0 && <div className="basis-9/12 p-10 border text-center text-lg font-semibold">Loading...</div>
+                }
+                {
+                    !courses.isLoading && courses.displayedCourses.length === 0 && <div className="basis-9/12 p-10 border text-center text-lg font-semibold">No Course Found</div>
                 }
             </div>
         </div>

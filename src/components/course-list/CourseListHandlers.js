@@ -1,4 +1,4 @@
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { courseListActions } from "./redux/course-list-slice"
 
 const CourseListHandlers = () => {
@@ -36,6 +36,12 @@ const CourseListHandlers = () => {
         }
     ]
 
+    const courses = useSelector(prevState => prevState.courses)
+
+    const searchTextUpdateHandler = (e) => {
+        dispatch(courseListActions.updateSearchText(e.target.value))
+    }
+
     const fetchCoursesHandler = () => {
         dispatch(courseListActions.toggleIsLoading(true))
         setTimeout(() => {
@@ -44,7 +50,18 @@ const CourseListHandlers = () => {
         }, 1500)
     }
 
-    return { fetchCoursesHandler }
+    const searchFromCoursesHandler = (e) => {
+        e.preventDefault()
+        const updatedCourses = courses.courses.filter(singleCourse => {
+            return (singleCourse.name.toLowerCase().includes(courses.searchText.toLowerCase())
+                || singleCourse.instructor.toLowerCase().includes(courses.searchText.toLowerCase())
+                || singleCourse.description.toLowerCase().includes(courses.searchText.toLowerCase()))
+        })
+        console.log(updatedCourses)
+        dispatch(courseListActions.updateDisplayedCourses(updatedCourses))
+    }
+
+    return { fetchCoursesHandler, searchTextUpdateHandler, searchFromCoursesHandler }
 }
 
 export default CourseListHandlers
