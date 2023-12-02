@@ -8,5 +8,5 @@ const courseListSlice = createSlice({
     reducers: courseListReducers
 })
 
-export const actions = courseListSlice.actions
-export const reducer = courseListSlice.reducer
+export const courseListActions = courseListSlice.actions
+export const courseListReducer = courseListSlice.reducer
