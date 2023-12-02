@@ -30,10 +30,14 @@ const CourseList = () => {
                     }
                 </div>}
                 {
-                    courses.isLoading && courses.displayedCourses.length !== 0 && <div className="basis-9/12 p-10 border text-center text-lg font-semibold">Loading...</div>
+                    courses.isLoading && courses.displayedCourses.length !== 0 && <div className="basis-9/12 grid grid-cols-3 gap-5">
+                        <div className="skeleton h-96"></div>
+                        <div className="skeleton h-96"></div>
+                        <div className="skeleton h-96"></div>
+                    </div>
                 }
                 {
-                    !courses.isLoading && courses.displayedCourses.length === 0 && <div className="basis-9/12 p-10 border text-center text-lg font-semibold">No Course Found</div>
+                    !courses.isLoading && courses.displayedCourses.length === 0 && <div className="basis-9/12 p-10 border text-center text-lg font-semibold">No Courses Found</div>
                 }
             </div>
         </div>
